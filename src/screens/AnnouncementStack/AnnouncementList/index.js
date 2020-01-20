@@ -3,8 +3,9 @@ import {StyleSheet, View, FlatList, Image, TouchableOpacity, Linking, Text} from
 import {Icon} from 'native-base';
 import {inject} from "mobx-react";
 import _ from 'lodash';
+import moment from 'moment';
 import axios from '../../../Api';
-import { res } from '../../../helpers';
+import { res, T } from '../../../helpers';
 import NavigationService from "../../../NavigationService";
 
 
@@ -13,45 +14,39 @@ export default class AnnouncementList extends Component {
   state = {
     text: '',
     page: 1,
-    documents: [],
-    allContacts: [],
+    announcements: [],
     loading: true,
   };
 
   componentDidMount() {
-    this.getDocuments();
+    this.getAnnouncements();
   }
 
-  getDocuments = async () => {
+  getAnnouncements = async () => {
+
+    const {data} = await axios.post('Anasayfa/AylikDuyurular');
+    data.reverse();
     this.setState({
-      loading: true,
-    });
-
-    const {data} = await axios.post('Dokuman/DokumanListesi');
-
-
-    this.setState({
-      documents: _.sortBy(data, ['Paylaşım_Adı']),
+      announcements: data,
       loading: false,
     });
   };
 
+
   renderContactsItem = ({item, index}) => {
-    const { Paylaşım_Adı, Hedef_Departmanlar, Pdflink } = item;
+    const { Title, Desc1, CreateDate } = item;
+    const date = moment(CreateDate, 'D.MM.YYYY HH:mm:ss');
     return (
       <TouchableOpacity
         onPress={() => { NavigationService.navigate('Detail', {item}) }}
         style={ styles.itemContainer }
       >
-
-        <Text style={styles.header}>Örnek Haber Başlığı</Text>
-
-
+        <Text style={styles.header}>{Title}</Text>
         <Text style={styles.textContainer}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim incidunt neque sunt temporibus totam? Error mollitia porro quas repudiandae ut?
+          {T.wordLimiter(Desc1, 150)}
         </Text>
         <Text style={styles.date}>
-          <Icon name='calendar' style={styles.calendarIcon}/> 12.09.2018
+          <Icon name='calendar' style={styles.calendarIcon}/> {date.format('DD.MM.YYYY')}
         </Text>
       </TouchableOpacity>
     )
@@ -63,7 +58,7 @@ export default class AnnouncementList extends Component {
         <FlatList
           renderItem={this.renderContactsItem}
           keyExtractor={item => item.$id}
-          data={this.state.documents}
+          data={this.state.announcements}
         />
       </View>
 

@@ -36,7 +36,7 @@ export default class ShortCuts extends Component {
             <Text style={s.text}>Belgeler</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => { NavigationService.navigate('Cafeteria')}}
+            onPress={() => { this.props.navigation.navigate('Cafeteria')}}
             style={s.item}>
             <Icon type="MaterialIcons" name="restaurant" style={s.icon} />
             <Text style={s.text}>Yemekhane</Text>

@@ -1,4 +1,3 @@
-
 export function range(start, stop, step) {
   if (typeof stop == 'undefined') {
     // one param defined
@@ -82,5 +81,9 @@ export function sef(text) {
               .replace(/[-]+/gi, "-") // trim repeated dashes
               .toLowerCase();
 
+}
+
+export function wordLimiter(str, max = 100, add = '...'){
+  return (typeof str === 'string' && str.length > max ? str.substring(0, max)+add : str);
 }
 

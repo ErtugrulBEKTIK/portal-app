@@ -1,87 +1,84 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
+import { NavigationActions} from 'react-navigation';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import {Icon} from 'native-base';
-import {res} from '../../../helpers';
+import _ from 'lodash';
+import moment from 'moment';
+require('moment/locale/tr');
+import {res, T} from '../../../helpers';
+import axios from "../../../Api";
+import NavigationService from "../../../NavigationService";
 
 export default class AnnounceSlide extends Component {
+  state = {
+    announcements: [],
+  };
+
+  componentDidMount() {
+    this.getAnnouncements();
+    this.swiperListError();
+
+  }
+
+  getAnnouncements = async () => {
+
+    const {data} = await axios.post('Anasayfa/AylikDuyurular');
+    data.reverse();
+
+    this.setState({
+      announcements: _.take(data, 5),
+      loading: false,
+    });
+  };
+
+  renderAnnouncement = ({item, index}) => {
+    const colors = ['#c24c30', '#5dca56', '#378aed', '#7bb0d0', '#9636a1'];
+    const date = moment(item.CreateDate, 'D.MM.YYYY HH:mm:ss');
+    return(
+      <TouchableHighlight
+        onPress={() => { this.props.navigation.navigate('Announcements', {}, NavigationActions.navigate({ routeName: 'Detail', params: {item} }))}}
+        style={[s.itemContainer, {backgroundColor: colors[index%5]}]}>
+        <View style={{flex: 1}}>
+          <View style={s.header}>
+            <Text style={s.headerText}>{T.toUpperCase(date.format('dddd'))}</Text>
+            <Text style={s.headerText}>
+              <Icon name="calendar" type="AntDesign" style={[s.headerText, s.calendarIcon]} />&nbsp;
+              {date.format('DD.MM.YYYY')}
+            </Text>
+          </View>
+          <View style={s.content}>
+            <Text style={s.title}>{item.Title}</Text>
+            <Text style={s.description}>{T.wordLimiter(item.Desc1)}</Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    )
+  };
+
+  swiperListError = () => {
+    let wait = new Promise((resolve) => setTimeout(resolve, 6000));  // Smaller number should work
+    wait.then( () => {
+      this.flatListRef.scrollToIndex({index: 1, animated: true});
+    }).catch(() => {  });
+  };
+
   render() {
+
     return (
       <View style={s.container}>
         <SwiperFlatList
-          showPagination
+          ref={ref => this.flatListRef = ref}
+          showPagination={this.state.announcements.length > 1}
           autoplay
           autoplayDelay={7}
           autoplayLoop
+          onScrollToIndexFailed={()=>{}}
+          data={this.state.announcements}
+          renderItem={this.renderAnnouncement}
           paginationDefaultColor={"rgba(255,255,255,0.24)"}
           paginationActiveColor={"rgba(255,255,255,0.81)"}
-        >
-          <View style={[s.itemContainer, { backgroundColor: '#c24c30' }]}>
-            <View style={s.header}>
-              <Text style={s.headerText}>PAZARTESİ</Text>
-              <Text style={s.headerText}>
-                <Icon name="calendar" type="AntDesign" style={[s.headerText, s.calendarIcon]} />&nbsp;
-                04.12.2019
-              </Text>
-            </View>
-            <View style={s.content}>
-              <Text style={s.title}>Sınıfınızdaki Ödev Düzenlendi</Text>
-              <Text style={s.description}>İsmail Çevik, EHB 231 dersindeki 'MOSFET' başlıklı ödevi düzenledi.</Text>
-            </View>
-          </View>
-          <View style={[s.itemContainer, { backgroundColor: '#5dca56' }]}>
-            <View style={s.header}>
-              <Text style={s.headerText}>SALI</Text>
-              <Text style={s.headerText}>
-                <Icon name="calendar" type="AntDesign" style={[s.headerText, s.calendarIcon]} />&nbsp;
-                04.12.2019
-              </Text>
-            </View>
-            <View style={s.content}>
-              <Text style={s.title}>Sınıfınızdaki Ödev Düzenlendi</Text>
-              <Text style={s.description}>İsmail Çevik, EHB 231 dersindeki 'MOSFET' başlıklı ödevi düzenledi.</Text>
-            </View>
-          </View>
-          <View style={[s.itemContainer, { backgroundColor: '#378aed' }]}>
-            <View style={s.header}>
-              <Text style={s.headerText}>ÇARŞAMBA</Text>
-              <Text style={s.headerText}>
-                <Icon name="calendar" type="AntDesign" style={[s.headerText, s.calendarIcon]} />&nbsp;
-                04.12.2019
-              </Text>
-            </View>
-            <View style={s.content}>
-              <Text style={s.title}>Sınıfınızdaki Ödev Düzenlendi</Text>
-              <Text style={s.description}>İsmail Çevik, EHB 231 dersindeki 'MOSFET' başlıklı ödevi düzenledi.</Text>
-            </View>
-          </View>
-          <View style={[s.itemContainer, { backgroundColor: '#7bb0d0' }]}>
-            <View style={s.header}>
-              <Text style={s.headerText}>PAZARTESİ</Text>
-              <Text style={s.headerText}>
-                <Icon name="calendar" type="AntDesign" style={[s.headerText, s.calendarIcon]} />&nbsp;
-                04.12.2019
-              </Text>
-            </View>
-            <View style={s.content}>
-              <Text style={s.title}>Sınıfınızdaki Ödev Düzenlendi</Text>
-              <Text style={s.description}>İsmail Çevik, EHB 231 dersindeki 'MOSFET' başlıklı ödevi düzenledi.</Text>
-            </View>
-          </View>
-          <View style={[s.itemContainer, { backgroundColor: '#9636a1' }]}>
-            <View style={s.header}>
-              <Text style={s.headerText}>PAZARTESİ</Text>
-              <Text style={s.headerText}>
-                <Icon name="calendar" type="AntDesign" style={[s.headerText, s.calendarIcon]} />&nbsp;
-                04.12.2019
-              </Text>
-            </View>
-            <View style={s.content}>
-              <Text style={s.title}>Sınıfınızdaki Ödev Düzenlendi</Text>
-              <Text style={s.description}>İsmail Çevik, EHB 231 dersindeki 'MOSFET' başlıklı ödevi düzenledi.</Text>
-            </View>
-          </View>
-        </SwiperFlatList>
+        />
       </View>
     );
   }

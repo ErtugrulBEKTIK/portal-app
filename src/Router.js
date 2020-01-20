@@ -85,7 +85,7 @@ const App = createDrawerNavigator({
     })
   }
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'Cafeteria',
   contentComponent: DrawerMenu,
   drawerWidth: res(250),
   overlayColor: 'rgba(0,0,0,0.67)',

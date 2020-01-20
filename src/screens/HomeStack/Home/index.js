@@ -11,9 +11,9 @@ export default class SignIn extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <AnnounceSlide/>
-        <ShortCuts/>
-        <Info/>
+        <AnnounceSlide navigation={this.props.navigation}/>
+        <ShortCuts navigation={this.props.navigation}/>
+        <Info navigation={this.props.navigation}/>
       </SafeAreaView>
     );
   }

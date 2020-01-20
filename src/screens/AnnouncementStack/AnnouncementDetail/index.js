@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {StyleSheet, SafeAreaView, Text, ScrollView, TouchableOpacity, Linking} from 'react-native';
-import { T, res } from '../../../helpers'
+import moment from 'moment';
+import { res } from '../../../helpers'
 
 export default class AnnouncementDetail extends Component {
 
@@ -8,20 +9,24 @@ export default class AnnouncementDetail extends Component {
   constructor(props) {
     super(props);
     this.item = props.navigation.getParam('item');
+    console.log(this.props);
   }
 
+  renderLink = () => (
+    <TouchableOpacity
+      onPress={() => { Linking.openURL('http://tugva.org/')}}>
+        <Text style={s.link}>Haber sayfasına gitmek için tıklayınız...</Text>
+    </TouchableOpacity>
+  );
+
   render() {
-    //const { Name, Lastname, Email, Department, GSM, file, Title } = this.item;
+    const { Title, Desc1, CreateDate } = this.item;
+    const date = moment(CreateDate, 'D.MM.YYYY HH:mm:ss');
     return (
       <SafeAreaView style={{flex: 1}}>
         <ScrollView style={s.container}>
-          <Text style={s.title}>'Antartika'yı Kutlamak' Kitabına İTÜ'lü Öğrencilerden Türkçe Çeviri</Text>
-          <Text style={s.content}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias amet cupiditate dicta distinctio dolores dolorum error facere inventore iusto minus modi molestias mollitia natus neque non numquam, optio quae quas, saepe sequi suscipit tenetur vero vitae voluptas voluptatem, voluptatum! Lorem ipsum dolor sit amet,</Text>
-          <TouchableOpacity
-            onPress={() => { Linking.openURL('http://tugva.org/')}}>
-            <Text style={s.link}>Haber sayfasına gitmek için tıklayınız...</Text>
-          </TouchableOpacity>
-
+          <Text style={s.title}>{Title}</Text>
+          <Text style={s.content}>{Desc1}</Text>
         </ScrollView>
       </SafeAreaView>
     );
