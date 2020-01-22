@@ -1,0 +1,26 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'TugvaPortal' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for TugvaPortal
+  pod 'Firebase/Core', '~> 6.13.0'
+  pod 'Firebase/Messaging'
+
+  post_install do |installer|
+    system("mkdir -p Pods/Headers/Public/FirebaseCore && cp Pods/FirebaseCore/Firebase/Core/Public/* Pods/Headers/Public/FirebaseCore/")
+  end
+
+  target 'TugvaPortal-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'TugvaPortalTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

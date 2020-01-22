@@ -20,6 +20,7 @@
     "react": "16.8.3",
     "react-native": "0.59.8",
     "react-native-countup": "0.0.2",
+    "react-native-firebase": "^5.6.0",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-push-notification": "^3.1.9",

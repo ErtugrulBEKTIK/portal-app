@@ -2,20 +2,13 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import firebase from 'react-native-firebase';
 
 import AnnounceSlide from './AnnounceSlide'
 import ShortCuts from './ShortCuts'
 import Info from './Info'
 
 export default class SignIn extends Component {
-
-  componentDidMount(){
-    PushNotification.localNotification({
-
-      title: "My Notification Title", // (optional)
-      message: "My Notification Message", // (required)
-  });
-  }
 
   render() {
     return (
@@ -27,6 +20,30 @@ export default class SignIn extends Component {
     );
   }
 }
+
+const messaging = firebase.messaging();
+
+messaging.hasPermission()
+  .then((enabled) => {
+    if (enabled) {
+      messaging.getToken()
+        .then(token => { console.log(token) })
+        .catch(error => { /* handle error */ });
+    } else {
+      messaging.requestPermission()
+        .then(() => { /* got permission */ })
+        .catch(error => { /* handle error */ });
+    }
+  })
+  .catch(error => { /* handle error */ });
+
+firebase.notifications().onNotification((notification) => {
+  const { title, body } = notification;
+  PushNotification.localNotification({
+    title: title,
+    message: body, // (required)
+  });
+});
 
 PushNotification.configure({
   // (optional) Called when Token is generated (iOS and Android)

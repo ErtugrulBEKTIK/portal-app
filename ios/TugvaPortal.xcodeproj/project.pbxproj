@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -44,6 +45,7 @@
 		3500E5C9A5954F9FB4BE1A03 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37B7B827768B48099A2FABA9 /* Foundation.ttf */; };
 		3B193C4DAD0A4BDCB48E389A /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21F4F8D721C54D76B8D0E470 /* FontAwesome5_Brands.ttf */; };
 		3C0FC44A2C694AE8AFFBE735 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6803ABE1362485482F81180 /* Zocial.ttf */; };
+		5773E6085B944A5287951593 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7E5B82092CE4C848AA1B45E /* libRNFirebase.a */; };
 		604201AEEB524BF59283DF29 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3458AE347C824702B838DC78 /* libRNGestureHandler.a */; };
 		69A05DE3D7F2C4CAFCB0AA85 /* Pods_TugvaPortal_tvOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55FCC99CA4091FDFE56A94BF /* Pods_TugvaPortal_tvOSTests.framework */; };
 		75BF3597A4F84539BED62221 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1A0D9B619F4D2BB6228EAD /* libRNGestureHandler-tvOS.a */; };
@@ -62,6 +64,7 @@
 		C033C139AE4745E7ADBA2274 /* Pods_TugvaPortalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10436EF523C0FC3E5BB3F2B /* Pods_TugvaPortalTests.framework */; };
 		C8BD545427C24F15962E495D /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 332D1FEF4B8340AE907ED6E9 /* libRNVectorIcons-tvOS.a */; };
 		CBCF111E23D862020095CA15 /* libRNCPushNotificationIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CBCF10F123D861E70095CA15 /* libRNCPushNotificationIOS.a */; };
+		CBCF12A723D902560095CA15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CBCF127723D902560095CA15 /* GoogleService-Info.plist */; };
 		D6D722A8A1954274AAE0FB55 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0707778F93F4DCAB2679E90 /* MaterialCommunityIcons.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
@@ -406,6 +409,13 @@
 			remoteGlobalIDString = FDBB176E229BF04900D1E455;
 			remoteInfo = "RNReanimated-tvOS";
 		};
+		CB2E3EF923D9039C00630457 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DBE60E10A9204764BFB6CF20 /* RNFirebase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFirebase;
+		};
 		CBCF10F023D861E70095CA15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CBCF10EA23D861E70095CA15 /* PushNotificationIOS.xcodeproj */;
@@ -472,11 +482,14 @@
 		BDF474A0269C4876849D3DA2 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		C192F606FCFB4585AF939F97 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		C6803ABE1362485482F81180 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		C7E5B82092CE4C848AA1B45E /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		CB8321BF23D71B86004601EE /* TugvaPortal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = TugvaPortal.entitlements; path = TugvaPortal/TugvaPortal.entitlements; sourceTree = "<group>"; };
 		CBCF10EA23D861E70095CA15 /* PushNotificationIOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PushNotificationIOS.xcodeproj; path = "../node_modules/@react-native-community/push-notification-ios/ios/PushNotificationIOS.xcodeproj"; sourceTree = "<group>"; };
+		CBCF127723D902560095CA15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEAF3DD0A7944CC6BBB4A4CC /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		D494691A939C80950A4C9439 /* Pods_TugvaPortal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TugvaPortal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAB90AEFC1F124B370431479 /* Pods-TugvaPortal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TugvaPortal.debug.xcconfig"; path = "Target Support Files/Pods-TugvaPortal/Pods-TugvaPortal.debug.xcconfig"; sourceTree = "<group>"; };
+		DBE60E10A9204764BFB6CF20 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		E3D6B35487691AD8077BD225 /* Pods-TugvaPortal-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TugvaPortal-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-TugvaPortal-tvOSTests/Pods-TugvaPortal-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		E498E21A37DF4445A153E3E4 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		E97893F5B6321B800CC13821 /* Pods-TugvaPortal-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TugvaPortal-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-TugvaPortal-tvOSTests/Pods-TugvaPortal-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -520,6 +533,7 @@
 				03F167FFCD71482590C2B2FD /* libRNVectorIcons.a in Frameworks */,
 				34396076025F42C38B1C273E /* libBVLinearGradient.a in Frameworks */,
 				7D5C53E115A3B7428CD222B5 /* Pods_TugvaPortal.framework in Frameworks */,
+				5773E6085B944A5287951593 /* libRNFirebase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +650,7 @@
 		13B07FAE1A68108700A75B9A /* TugvaPortal */ = {
 			isa = PBXGroup;
 			children = (
+				CBCF127723D902560095CA15 /* GoogleService-Info.plist */,
 				CB8321BF23D71B86004601EE /* TugvaPortal.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -736,6 +751,7 @@
 				FE25B10D8D6A4412982D77CD /* RNCAsyncStorage.xcodeproj */,
 				E498E21A37DF4445A153E3E4 /* RNVectorIcons.xcodeproj */,
 				A48BB732C4C54C65A6CA3E14 /* BVLinearGradient.xcodeproj */,
+				DBE60E10A9204764BFB6CF20 /* RNFirebase.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -820,7 +836,7 @@
 				3AE42FC9858E4A718392424E /* libRNReanimated-tvOS.a */,
 				FC1A0D9B619F4D2BB6228EAD /* libRNGestureHandler-tvOS.a */,
 				332D1FEF4B8340AE907ED6E9 /* libRNVectorIcons-tvOS.a */,
-				6DE8DC66B02D44DA80763300 /* libRNFirebase.a */,
+				C7E5B82092CE4C848AA1B45E /* libRNFirebase.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -869,6 +885,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CB2E3EF623D9039C00630457 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB2E3EFA23D9039C00630457 /* libRNFirebase.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CBCF10EB23D861E70095CA15 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +932,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				CC453615A7570ED0A47E5E1A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1056,6 +1081,10 @@
 				{
 					ProductGroup = CB255F2823831C300044277F /* Products */;
 					ProjectRef = FE25B10D8D6A4412982D77CD /* RNCAsyncStorage.xcodeproj */;
+				},
+				{
+					ProductGroup = CB2E3EF623D9039C00630457 /* Products */;
+					ProjectRef = DBE60E10A9204764BFB6CF20 /* RNFirebase.xcodeproj */;
 				},
 				{
 					ProductGroup = CB255F3D23831C310044277F /* Products */;
@@ -1403,6 +1432,13 @@
 			remoteRef = CB255F4B23831C310044277F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CB2E3EFA23D9039C00630457 /* libRNFirebase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFirebase.a;
+			remoteRef = CB2E3EF923D9039C00630457 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CBCF10F123D861E70095CA15 /* libRNCPushNotificationIOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1435,6 +1471,7 @@
 				9C0A0968B4D84AA8B3B627F9 /* FontAwesome5_Regular.ttf in Resources */,
 				00D959EF9706415B82951978 /* FontAwesome5_Solid.ttf in Resources */,
 				B955FDAA0FAF4D12B9068636 /* Fontisto.ttf in Resources */,
+				CBCF12A723D902560095CA15 /* GoogleService-Info.plist in Resources */,
 				3500E5C9A5954F9FB4BE1A03 /* Foundation.ttf in Resources */,
 				ADC9655272F846F892D7E712 /* Ionicons.ttf in Resources */,
 				D6D722A8A1954274AAE0FB55 /* MaterialCommunityIcons.ttf in Resources */,
@@ -1533,6 +1570,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC453615A7570ED0A47E5E1A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TugvaPortal/Pods-TugvaPortal-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TugvaPortal/Pods-TugvaPortal-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D1940798D8376E07422EBD22 /* [CP] Check Pods Manifest.lock */ = {
@@ -1640,11 +1699,15 @@
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = TugvaPortalTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1671,11 +1734,15 @@
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = TugvaPortalTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1708,6 +1775,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/@react-native-community/push-notification-ios/ios",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = TugvaPortal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1744,6 +1812,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/@react-native-community/push-notification-ios/ios",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = TugvaPortal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1779,10 +1848,14 @@
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = "TugvaPortal-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1814,10 +1887,14 @@
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = "TugvaPortal-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1849,10 +1926,14 @@
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = "TugvaPortal-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -1884,10 +1965,14 @@
 					"$(SRCROOT)/../node_modules/@react-native-community/async-storage/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 				);
 				INFOPLIST_FILE = "TugvaPortal-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
