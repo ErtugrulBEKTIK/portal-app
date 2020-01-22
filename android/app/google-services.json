@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "401339463754",
+    "firebase_url": "https://tugva-portal.firebaseio.com",
+    "project_id": "tugva-portal",
+    "storage_bucket": "tugva-portal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401339463754:android:d5f5db68abd527163f8eb3",
+        "android_client_info": {
+          "package_name": "com.tugvaportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401339463754-nmdvgvpd8ef2ej6080sjep8kr9hsfeca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA0-LJF76gKR3AXQ99ZKZzjLF_5Vn49w4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401339463754-nmdvgvpd8ef2ej6080sjep8kr9hsfeca.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401339463754-lha36ouuv9hlahlhh3g4aenaos72upo1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.tugva.tugvaportalapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
