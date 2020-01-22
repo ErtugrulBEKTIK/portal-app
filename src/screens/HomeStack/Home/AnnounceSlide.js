@@ -18,7 +18,6 @@ export default class AnnounceSlide extends Component {
   componentDidMount() {
     this.getAnnouncements();
     this.swiperListError();
-
   }
 
   getAnnouncements = async () => {

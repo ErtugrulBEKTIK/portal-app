@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {StyleSheet, SafeAreaView, ScrollView, TouchableOpacity, View} from 'react-native';
-import { Card, CardItem, Body, Icon, Right, List, ListItem, Left, Thumbnail, Text } from 'native-base';
+import {StyleSheet, SafeAreaView, ScrollView, TouchableOpacity, View, ActivityIndicator} from 'react-native';
+import { Thumbnail } from 'native-base';
+import { Text }  from '../../../components/my-base';
 import moment from 'moment';
 import { T, res } from '../../../helpers'
 import axios from "../../../Api";
@@ -9,7 +10,8 @@ import _ from "lodash";
 export default class Cafeteria extends Component {
   state = {
     menu: [],
-    date: moment()
+    date: moment(),
+    loading: false
   };
 
   componentDidMount(){
@@ -17,14 +19,27 @@ export default class Cafeteria extends Component {
   }
 
   getMenu = async () => {
-    const { data } = await axios.post('Anasayfa/YemekListesi');
+    this.setState({ loading: true });
 
-    const menu = data.filter(item => item.Date === this.state.date.format('DD.MM.YYYY') + ' 00:00:00');
+    const date = this.state.date.format('DD.MM.YYYY');
+
+    const { data } = await axios.post('Anasayfa/YemekListesi', {
+      FoodDate: date
+    });
+
+    let menu = [];
+    if(data){
+       menu = data.map((item) => ({
+        ...item,
+        Foodname: T.capitalizeWord(item.Foodname.replace("\r\n", "").replace("/", " / "))
+      }));
+    }
 
     this.setState({
       menu,
       loading: false,
     });
+
   };
 
   nextDay = () => {
@@ -41,17 +56,17 @@ export default class Cafeteria extends Component {
 
   render() {
 
-    const { date } = this.state;
+    const { date, menu, loading } = this.state;
     return (
       <SafeAreaView style={{flex: 1}}>
-        <ScrollView style={s.container}>
+        <View style={s.container}>
           <View style={s.segmentContainer}>
             <TouchableOpacity
               onPress={this.previousDay}
               style={s.segmentItem}>
               <Text style={s.segmentText}>Geri</Text>
             </TouchableOpacity>
-            <View style={[s.segmentItem, {borderLeftWidth: res(1), borderRightWidth: res(1)}]}>
+            <View style={[s.segmentItem, s.segmentDate]}>
               <Text style={s.segmentText}>{date.format('DD.MM.YYYY')}</Text>
             </View>
             <TouchableOpacity
@@ -60,23 +75,36 @@ export default class Cafeteria extends Component {
               <Text style={s.segmentText}>İleri</Text>
             </TouchableOpacity>
           </View>
+          <ScrollView>
+            <View style={s.cardContainer}>
+              <View style={s.cardHeader}>
+                <Text style={s.cardHeaderText}>MENÜ</Text>
+              </View>
+              {
+                menu.length > 0 ?
+                  menu.map((item, index) => (
+                    <View style={s.foodItem} key={index.toString()}>
+                      <Thumbnail square source={{ uri: item.Filepath }} style={s.foodImage} />
+                      <Text style={s.foodText}>{item.Foodname}</Text>
+                    </View>
+                  ))
+                  :
+                  <View style={s.footer}>
+                    {
+                      loading ?
+                        <ActivityIndicator/>
+                        :
+                        <Text style={s.foodText}>Yemek bilgisi bulunamadı.</Text>
+                    }
 
-          <Card style={s.card}>
-            <CardItem header bordered>
-              <Text>MENÜ</Text>
-            </CardItem>
-            {
-              this.state.menu.map((item, index) => (
-                <CardItem style={{flexDirection: 'row'}} bordered key={index.toString()}>
-                  <Thumbnail square source={{ uri: item.Filepath }} style={s.mealImage} />
-                  <Text>{item.Foodname}</Text>
-                </CardItem>
-              ))
-            }
+                  </View>
+              }
 
-          </Card>
 
-        </ScrollView>
+            </View>
+
+          </ScrollView>
+        </View>
       </SafeAreaView>
     );
   }
@@ -91,24 +119,55 @@ const s = StyleSheet.create({
   segmentContainer: {
     flexDirection: 'row',
     borderWidth: res(1),
-    borderColor: '#3c9fb7',
+    borderColor: '#ddd',
     borderRadius: res(5)
   },
   segmentText: {
-    color: '#3c9fb7',
-    textAlign: 'center'
 
+    textAlign: 'center',
   },
   segmentItem: {
     flex: 1,
     padding: res(10),
-    borderColor: '#3c9fb7',
+    borderColor: '#ddd',
   },
-  card: {
-    marginTop: res(20)
+  segmentDate: {
+    borderLeftWidth: res(1),
+    borderRightWidth: res(1),
+    flex: 2
   },
-  mealImage: {
+  cardContainer: {
+    marginTop: res(20),
+    borderWidth: res(1),
+    borderColor: '#ddd',
+  },
+  cardHeader: {
+    padding: res(20),
+    borderBottomWidth: res(1),
+    borderBottomColor: '#ddd',
+  },
+  cardHeaderText: {
+    textAlign: 'center',
+    fontWeight: '500',
+  },
+  foodItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: res(1),
+    borderBottomColor: '#ddd',
+    padding: res(10)
+  },
+  foodText: {
+    backgroundColor: 'white',
+  },
+  foodImage: {
     marginRight: res(10)
-  }
+  },
+  footer: {
+    padding: res(20),
+    alignItems: 'center',
+    borderBottomWidth: res(1),
+    borderBottomColor: '#ddd',
+  },
 
 });
