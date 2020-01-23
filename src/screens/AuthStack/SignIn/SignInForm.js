@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-
-import {Button, Label, Input, Item, Spinner, Text, Icon} from "native-base";
+import { Alert } from "react-native";
+import {Button, Label, Input, Item, Spinner, Text, Icon, } from "native-base";
 import {Formik} from "formik";
 import {res} from '../../../helpers';
 
 import axios from '../../../Api';
+import notifications from '../../../Notifications';
 import validations from './validations';
 
 
@@ -12,27 +13,69 @@ import {inject} from 'mobx-react';
 
 @inject('AuthStore')
 export default class SignInForm extends Component {
+  state={
+    device_token: ''
+  };
+
+  componentDidMount() {
+    this.setDeviceToken();
+  }
+
+
+  setDeviceToken = async () => {
+    const device_token = await notifications();
+    this.setState({
+      device_token
+    });
+  };
+
   _handleSubmit = async ({ username, password }, bag) => {
     try {
       const response = await axios.post('Login/Login',
         {
           Username: username,
           UserPass: password,
-          apikey: '98B46602-DA8F-4DC8-9E71-6D8ABB9A2DFF'
         }
       );
-      bag.setSubmitting(false);
 
-      console.log(response);
       if (!response.data) {
-        alert('Giriş bilgileri hatalı.');
+        Alert.alert(
+          'Hata',
+          'Giriş bilgileri hatalı.'
+        );
         return false;
       }
 
-      this.props.AuthStore.saveUser(username, response.data[0]);
+      // Save user's device token
+      const { device_token } = this.state;
+      const tokenResult = await axios.post('Login/ImeiNoControl',
+        {
+          Username: username,
+          UserPass: password,
+          EmpId: username,
+          device_token,
+          tokenkey: response.data[0].Tokenkey
+        }
+      );
+      console.log(tokenResult);
+
+      if (!tokenResult.data) {
+        Alert.alert(
+          'Hata',
+          'Sorun oluştu.'
+        );
+        return false;
+      }
+
+
+      bag.setSubmitting(false);
+      this.props.AuthStore.saveUser(username, response.data[0], device_token);
     }catch (e) {
       bag.setSubmitting(false);
-      bag.setErrors(e);
+      Alert.alert(
+        'Hata',
+        'Bağlantı hatası.'
+      );
       console.log(e);
     }
   };
@@ -110,3 +153,4 @@ export default class SignInForm extends Component {
     );
   }
 }
+

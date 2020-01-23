@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions, TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ActivityIndicator, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
 import { NavigationActions} from 'react-navigation';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import {Icon} from 'native-base';
@@ -31,13 +31,15 @@ export default class AnnounceSlide extends Component {
     });
   };
 
-  renderAnnouncement = ({item, index}) => {
+  renderAnnouncement = (item, index) => {
+    console.log(item);
     const colors = ['#c24c30', '#5dca56', '#378aed', '#7bb0d0', '#9636a1'];
     const date = moment(item.CreateDate, 'D.MM.YYYY HH:mm:ss');
     return(
       <TouchableHighlight
         onPress={() => { this.props.navigation.navigate('Announcements', {}, NavigationActions.navigate({ routeName: 'Detail', params: {item} }))}}
-        style={[s.itemContainer, {backgroundColor: colors[index%5]}]}>
+        style={[s.itemContainer, {backgroundColor: colors[index%5]}]}
+        key={index.toString()}>
         <View style={{flex: 1}}>
           <View style={s.header}>
             <Text style={s.headerText}>{T.toUpperCase(date.format('dddd'))}</Text>
@@ -63,6 +65,7 @@ export default class AnnounceSlide extends Component {
   };
 
   render() {
+    const { announcements } = this.state;
 
     return (
       <View style={s.container}>
@@ -77,7 +80,23 @@ export default class AnnounceSlide extends Component {
           renderItem={this.renderAnnouncement}
           paginationDefaultColor={"rgba(255,255,255,0.24)"}
           paginationActiveColor={"rgba(255,255,255,0.81)"}
-        />
+        >
+          {
+            announcements.length > 0 ?
+              announcements.map(this.renderAnnouncement)
+              :
+              <View
+                style={[s.itemContainer, {backgroundColor: '#c24c30'}]}>
+                <View style={{flex: 1}}>
+                  <View style={s.header}>
+                  </View>
+                  <View style={[s.content, {justifyContent: 'center'}]}>
+                    <ActivityIndicator size="large"/>
+                  </View>
+                </View>
+              </View>
+          }
+        </SwiperFlatList>
       </View>
     );
   }

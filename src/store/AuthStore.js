@@ -21,12 +21,12 @@ class AuthStore{
   @observable token = defaultToken;
   @observable user = defaultUser;
 
-  @action async saveUser(username, user){
+  @action async saveUser(username, user, device_token){
     try{
       const token = {
         Username: username,
-        apikey: API_KEY,
         tokenkey: user.Tokenkey,
+        device_token
       };
 
       await AsyncStorage.setItem('token', JSON.stringify(token));
@@ -39,6 +39,14 @@ class AuthStore{
 
   @action async removeUser(){
     try{
+      const { Username, device_token } = this.token;
+      await axios.post('Login/DeleteImeiNo',
+        {
+          EmpId: Username,
+          device_token,
+        }
+      );
+
       await AsyncStorage.removeItem('token');
       await AsyncStorage.removeItem('user');
       this.token = defaultToken;
@@ -64,10 +72,11 @@ class AuthStore{
         return false;
       }
 
-      axios.defaults.transformRequest = [(data) => {
-        const newData = {...token, ...data};
+      axios.defaults.transformRequest = [...axios.defaults.transformRequest, (data) => {
+        let newData = {...token, ...JSON.parse(data)};
         return JSON.stringify(newData);
       }];
+
       this.token = token;
       NavigationService.navigate('App');
     }catch (e) {
