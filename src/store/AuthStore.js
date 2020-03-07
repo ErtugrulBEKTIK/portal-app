@@ -19,14 +19,14 @@ const defaultToken = {
 
 class AuthStore{
   @observable token = defaultToken;
+  @observable deviceToken = '';
   @observable user = defaultUser;
 
-  @action async saveUser(username, user, device_token){
+  @action async saveUser(username, user){
     try{
       const token = {
         Username: username,
-        tokenkey: user.Tokenkey,
-        device_token
+        tokenkey: user.Tokenkey
       };
 
       await AsyncStorage.setItem('token', JSON.stringify(token));
@@ -39,17 +39,18 @@ class AuthStore{
 
   @action async removeUser(){
     try{
-      const { Username, device_token } = this.token;
+      const { Username } = this.token;
       await axios.post('Login/DeleteImeiNo',
         {
           EmpId: Username,
-          device_token,
+          device_token: this.deviceToken,
         }
       );
 
       await AsyncStorage.removeItem('token');
       await AsyncStorage.removeItem('user');
       this.token = defaultToken;
+      this.deviceToken = '';
       await this.setupAuth();
       this.user = defaultUser;
 
@@ -82,6 +83,10 @@ class AuthStore{
     }catch (e) {
       console.log(e);
     }
+  }
+
+  @action async setDeviceToken(token){
+    this.deviceToken = token;
   }
 
   @action async setUser(){

@@ -1,33 +1,17 @@
 import React, { Component } from 'react';
 import { Alert } from "react-native";
-import {Button, Label, Input, Item, Spinner, Text, Icon, } from "native-base";
+import {Button, Label, Input, Item, Spinner, Text, Icon} from "native-base";
 import {Formik} from "formik";
 import {res} from '../../../helpers';
-
 import axios from '../../../Api';
-import notifications from '../../../Notifications';
 import validations from './validations';
+import firebase from "react-native-firebase";
 
-
-import {inject} from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 
 @inject('AuthStore')
+@observer
 export default class SignInForm extends Component {
-  state={
-    device_token: ''
-  };
-
-  componentDidMount() {
-    this.setDeviceToken();
-  }
-
-
-  setDeviceToken = async () => {
-    const device_token = await notifications();
-    this.setState({
-      device_token
-    });
-  };
 
   _handleSubmit = async ({ username, password }, bag) => {
     try {
@@ -47,17 +31,15 @@ export default class SignInForm extends Component {
       }
 
       // Save user's device token
-      const { device_token } = this.state;
       const tokenResult = await axios.post('Login/ImeiNoControl',
         {
           Username: username,
           UserPass: password,
           EmpId: username,
-          device_token,
+          device_token: this.props.AuthStore.deviceToken,
           tokenkey: response.data[0].Tokenkey
         }
       );
-      console.log(tokenResult);
 
       if (!tokenResult.data) {
         Alert.alert(
@@ -69,7 +51,7 @@ export default class SignInForm extends Component {
 
 
       bag.setSubmitting(false);
-      this.props.AuthStore.saveUser(username, response.data[0], device_token);
+      this.props.AuthStore.saveUser(username, response.data[0]);
     }catch (e) {
       bag.setSubmitting(false);
       Alert.alert(
@@ -84,8 +66,8 @@ export default class SignInForm extends Component {
     return (
       <Formik
         initialValues={{
-          username: '1318',
-          password: '1234'
+          username: '',
+          password: ''
         }}
         onSubmit={this._handleSubmit}
         validationSchema={validations}
